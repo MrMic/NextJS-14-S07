@@ -1,13 +1,15 @@
 import Messages from '@/components/messages';
+// import { unstable_noStore } from 'next/cache';
+
+// * NOTE: Name is compulsory for revalidate property globally.
+// export const revalidate = 5;
+// export const dynamic = 'force-dynamic';
 
 export default async function MessagesPage() {
-  const response = await fetch('http://localhost:8080/messages', {
-    // cache: 'no-store',
-    next: { revalidate: 5 },
-    headers: {
-      'X-ID': 'page',
-    },
-  });
+  // * NOTE: Disable caching for this component.
+  // unstable_noStore();
+
+  const response = await fetch('http://localhost:8080/messages');
   const messages = await response.json();
 
   if (!messages || messages.length === 0) {
