@@ -6,7 +6,7 @@ import { getMessages } from '@/lib/messages';
 // export const revalidate = 5;
 // export const dynamic = 'force-dynamic';
 
-export default function MessagesPage() {
+export default async function MessagesPage() {
   // * NOTE: Disable caching for this component.
   // unstable_noStore();
 
@@ -17,7 +17,7 @@ export default function MessagesPage() {
   // });
   // const messages = await response.json();
 
-  const messages = getMessages();
+  const messages = await getMessages();
 
   if (!messages || messages.length === 0) {
     return <p>No messages found</p>;
